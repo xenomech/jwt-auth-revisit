@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
+import genToken from '../lib/genToken.js'
 /**
  * @author Gokul Suresh
  * @description Authenticate user -> set token -> login
@@ -26,12 +27,13 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const newUser = await User.create({ first_name, last_name, email, password })
     if (newUser) {
+        genToken(res, newUser._id);
         res.status(201).json({
             _id: newUser._id,
             first_name: newUser.first_name,
             last_name: newUser.last_name,
             email: newUser.email
-        })
+        });
     } else {
         res.status(400);
         throw new Error('Invalid Data')
