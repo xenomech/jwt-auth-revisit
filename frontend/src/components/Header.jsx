@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Header() {
   return (
@@ -7,8 +8,8 @@ export default function Header() {
         <h1>Check out this cool logo</h1>
       </div>
       <div className='flex justify-between items-center gap-4'>
-        <a href='/login'>Sign In</a>
-        <a href='/register'>Sign up</a>
+        <Link to='/login'>Sign In</Link>
+        <Link to='/register'>Sign up</Link>
       </div>
     </div>
   )
